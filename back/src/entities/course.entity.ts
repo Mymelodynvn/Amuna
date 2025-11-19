@@ -8,7 +8,6 @@ UpdateDateColumn,
 } from 'typeorm';
 
 import { UserCourse } from './user-course.entity';
-import { PublicationEntity } from './publication.entity';
 
 @Entity('courses')
 export class Course {
@@ -34,8 +33,8 @@ export class Course {
     })
         status: 'draft' | 'published' | 'archived';
 
-    @Column({ type: 'varchar', nullable: true })
-    thumbnailUrl: string;
+    @Column({ type: 'varchar', length: 255, nullable: true })
+    thumbnailUrl: string | null;
 
     @Column({ type: 'boolean', default: false })
     isFree: boolean;
@@ -46,9 +45,7 @@ export class Course {
     @UpdateDateColumn()
     updatedAt: Date;
 
-
     @OneToMany(() => UserCourse, (userCourse) => userCourse.course)
     userCourses: UserCourse[];
-
 
 }
