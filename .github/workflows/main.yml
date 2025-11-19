@@ -27,4 +27,4 @@ jobs:
           context: ./back
           file: ./back/DockerFile
           push: true
-          tags: ${{ secrets.DOCKERRHUB_USERNAME }}/amuna_nestjs:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/amuna_nestjs:latest
