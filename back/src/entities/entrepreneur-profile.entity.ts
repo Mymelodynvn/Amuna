@@ -22,4 +22,3 @@ export class EntrepreneurProfile {
     @JoinColumn({ name: 'id_user' })
     user: User;
 }
-

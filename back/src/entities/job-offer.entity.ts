@@ -9,6 +9,8 @@ import {
 import { CompanyProfile } from './company-profile.entity';
 import { Category } from './categiries.entity';
 import { Application } from './application.entity';
+import { jobMode } from 'src/enum/jobMode.enum';
+import { ApplicationStatus } from 'src/enum/application.enum';
 
 @Entity('job_offers')
 export class JobOffer {
@@ -31,20 +33,20 @@ export class JobOffer {
   salary: number;
 
   @Column({
-    type: 'enum',
-    enum: ['presencial', 'remoto', 'hibrido'],
-  })
-  mode: 'presencial' | 'remoto' | 'hibrido';
+     type: 'enum',
+  enum: jobMode,
+})
+mode: jobMode;
 
   @Column({ type: 'timestamp' })
   publication: Date;
 
   @Column({
-    type: 'enum',
-    enum: ['activa', 'inactiva', 'cerrada'],
-    default: 'activa',
-  })
-  status: 'activa' | 'inactiva' | 'cerrada';
+     type: 'enum',
+  enum: ApplicationStatus,
+  default: ApplicationStatus.PENDING,
+})
+status: ApplicationStatus;
 
   // FK Company (muchas ofertas para una empresa)
   @ManyToOne(() => CompanyProfile, (company) => company.jobOffers)

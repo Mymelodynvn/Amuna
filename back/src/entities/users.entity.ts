@@ -11,8 +11,8 @@ import {
 import { Credential } from 'src/entities/credentials.entity';
 import { Application } from './application.entity';
 import { Roles } from 'src/enum/roles.enum';
-import { UserCourse } from './user-course.entity';   // ✅ AGREGADO
-
+import { UserCourse } from './user-course.entity';   
+import { EntrepreneurProfile } from 'src/entities/entrepreneur-profile.entity';
 
 @Entity({ name: 'Users' })
 export class User {
@@ -40,6 +40,9 @@ export class User {
   @Column({ type: 'enum', enum: Roles, default: Roles.USER })
   role: Roles;
 
+  @Column({type: 'date', nullable: true})
+    birthDate: Date;
+
   
   @OneToOne(() => Credential, (credential) => credential.user_id)
   @JoinColumn({ name: 'credential_id' })
@@ -49,6 +52,9 @@ export class User {
   @OneToOne(() => Application, (application) => application.offer)
   application: Application;
 
+
+  @OneToOne(() => EntrepreneurProfile, (ep) => ep.user)
+  entrepreneurProfile: EntrepreneurProfile;
 
   @OneToMany(() => UserCourse, (userCourse) => userCourse.user)
   userCourses: UserCourse[];

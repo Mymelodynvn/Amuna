@@ -37,7 +37,6 @@ export class DataLoaderUsers implements OnModuleInit {
         const filePath = path.join(process.cwd(), 'src', 'utils', 'data.json');
         console.log(filePath)
         const rawData = fs.readFileSync(filePath, 'utf-8');
-        console.log(rawData)
         const users = JSON.parse(rawData) as Array<{
           username: string;
           firstName: string;
