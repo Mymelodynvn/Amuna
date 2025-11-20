@@ -11,7 +11,13 @@ import { User } from './entities/users.entity';
 import { Credential } from './entities/credentials.entity';
 import { JwtModule } from '@nestjs/jwt';
 import { JobOfferModule } from './job-offer/job-offer.module';
-import { EntrepreneurProfileModule } from './entrepreneur-profile/entrepreneur-profile.module'; // Importa el módulo
+import { ApplicantProfileModule } from './applicant-profile/applicant-profile.module';
+import { EntrepreneurProfileModule } from './entrepreneur-profile/entrepreneur-profile.module';
+import { ApplicationModule } from './application/application.module';
+import { CategoriesModule } from './categories/categories.module';
+import { CourseModule } from './course/course.module';
+import { PublicationModule } from './publication/publication.module';
+import { UserCourseModule } from './user-course/user-course.module';
 
 @Module({
   imports: [
@@ -33,7 +39,13 @@ import { EntrepreneurProfileModule } from './entrepreneur-profile/entrepreneur-p
       signOptions: { expiresIn: '1h' },
     }),
     JobOfferModule,
-    EntrepreneurProfileModule, 
+    EntrepreneurProfileModule,
+    ApplicantProfileModule,
+    ApplicationModule,
+    CategoriesModule,
+    CourseModule,
+    PublicationModule,
+    UserCourseModule,
   ],
   controllers: [AppController],
   providers: [AppService, DataLoaderUsers],
