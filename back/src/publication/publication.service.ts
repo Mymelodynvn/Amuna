@@ -1,40 +1,29 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { PublicationEntity } from '../entities/publication.entity';
+import { Injectable } from '@nestjs/common';
+import { PublicationRepository } from './publication.repository';
 import { CreatePublicationDto } from './dto/create-publication.dto';
 import { UpdatePublicationDto } from './dto/update-publication.dto';
 
 @Injectable()
 export class PublicationService {
-  constructor(
-    @InjectRepository(PublicationEntity)
-    private readonly publicationRepo: Repository<PublicationEntity>,
-  ) {}
+  constructor(private readonly publicationRepo: PublicationRepository) {}
 
-  findAll(): Promise<PublicationEntity[]> {
-    return this.publicationRepo.find();
+  findAll() {
+    return this.publicationRepo.findAll();
   }
 
-  async findOne(id: number): Promise<PublicationEntity> {
-    const publication = await this.publicationRepo.findOne({ where: { id: id.toString() } });
-    if (!publication) throw new NotFoundException('Publication not found');
-    return publication;
+  findOne(id: string) {
+    return this.publicationRepo.findOne(id);
   }
 
-  create(data: CreatePublicationDto): Promise<PublicationEntity> {
-    const publication = this.publicationRepo.create(data);
-    return this.publicationRepo.save(publication);
+  create(dto: CreatePublicationDto) {
+    return this.publicationRepo.create(dto);
   }
 
-  async update(id: number, data: UpdatePublicationDto): Promise<PublicationEntity> {
-    await this.findOne(id);
-    await this.publicationRepo.update(id, data);
-    return this.findOne(id);
+  update(id: string, dto: UpdatePublicationDto) {
+    return this.publicationRepo.update(id, dto);
   }
 
-  async remove(id: number): Promise<void> {
-    await this.findOne(id);
-    await this.publicationRepo.delete(id);
+  remove(id: string) {
+    return this.publicationRepo.remove(id);
   }
 }
