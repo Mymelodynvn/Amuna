@@ -14,9 +14,9 @@ const config: DataSourceOptions ={
     
     entities: ['dist/**/*.entity.js'],
     migrations: ['dist/migrations/*{.ts, .js}'],
-    logging: false, //muestra en la consola la interacción con la db
+    logging: true, //muestra en la consola la interacción con la db
     synchronize: true, // sincroniza las entidades con la db
-    dropSchema: false, //limpia, borra y crea nuevamente las entidades. Siempre en false porque puede borrar la DB
+    dropSchema: true, //limpia, borra y crea nuevamente las entidades. Siempre en false porque puede borrar la DB
 };
 
 export default registerAs('typeorm',() => config);
