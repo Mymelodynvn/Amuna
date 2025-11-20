@@ -18,6 +18,7 @@ import { CategoriesModule } from './categories/categories.module';
 import { CourseModule } from './course/course.module';
 import { PublicationModule } from './publication/publication.module';
 import { UserCourseModule } from './user-course/user-course.module';
+import { CompanyProfileModule } from './company-profile/company-profile.module';
 
 @Module({
   imports: [
@@ -46,6 +47,7 @@ import { UserCourseModule } from './user-course/user-course.module';
     CourseModule,
     PublicationModule,
     UserCourseModule,
+    CompanyProfileModule,
   ],
   controllers: [AppController],
   providers: [AppService, DataLoaderUsers],
