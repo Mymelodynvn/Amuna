@@ -86,10 +86,10 @@ EMAIL_FROM=
 ## 🧪 Pruebas Unitarias y Evidencias
 
 ### Qué pruebas se implementaron
-*Pendiente por definir.*
+*Sawgger*
 
 ### Resultado de la ejecución
-*Pendiente.*  
+Corriendo*  
 (Añadir capturas cuando existan)
 
 ## 📁 Carpeta de Evidencias
