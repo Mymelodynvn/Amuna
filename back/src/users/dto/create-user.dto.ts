@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import {
   IsString,
   IsNotEmpty,
@@ -11,6 +12,10 @@ import {
 import { Roles } from 'src/enum/roles.enum';
 
 export class CreateUserDto {
+  @ApiProperty({
+    description: 'Nombre del usuario',
+    example: 'Juan',
+  })
   @IsNotEmpty({ message: 'El nombre es obligatorio' })
   @IsString({ message: 'El nombre debe ser texto' })
   @Matches(/^[a-zA-Z ]+$/, { message: 'El nombre solo puede tener letras y espacios' })
@@ -27,6 +32,11 @@ export class CreateUserDto {
 
   @IsEmail({}, { message: 'El correo no tiene formato válido' })
   email: string;
+
+  @Matches(/^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/, {
+    message: 'La fecha de cumpleaños debe estar en formato dd/mm/aaaa',
+  })
+  birthDate: string;
 
   @IsOptional()
   @IsString({ message: 'El teléfono debe ser texto' })

@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import {
   IsUUID,
   IsString,
@@ -11,6 +12,11 @@ import {
 import { Roles } from 'src/enum/roles.enum';
 
 export class UpdateUserDto {
+    @ApiProperty({
+    description: 'UUID del usuario a actualizar',
+    example: '550e8400-e29b-41d4-a716-446655440000',
+    format: 'uuid',
+  })
   @IsUUID('4', { message: 'El userId debe ser un UUID válido' })
   userId: string;
 
