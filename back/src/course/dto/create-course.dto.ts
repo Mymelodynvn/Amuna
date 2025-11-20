@@ -1,24 +1,37 @@
-import { IsString, IsNotEmpty, MaxLength, IsInt, IsPositive } from 'class-validator';
-import { Type } from 'class-transformer';
+// ...existing code...
+import { ApiProperty } from '@nestjs/swagger';
+import {
+  IsString,
+  IsNotEmpty,
+  MaxLength,
+  IsInt,
+  Min,
+} from 'class-validator';
 
 export class CreateCourseDto {
-@IsNotEmpty({ message: 'La profesion es requerida' })
-    @IsString({ message: 'La profesion debe ser una cadena de caracteres' })
-    proffesion: string;
+@ApiProperty({
+    description: 'Título del curso. Texto no vacío, máximo 150 caracteres.',
+    example: 'Introducción a NestJS',
+    maxLength: 150,
+  })
+   @IsString({ message: 'El título debe ser un texto válido.' })
+   @IsNotEmpty({ message: 'El título no puede estar vacío.' })
+   @MaxLength(150, { message: 'El título no puede superar los 150 caracteres.' })
+   title: string;
 
-    @IsNotEmpty({ message: 'Las habilidades son requeridas' })
-    @IsString({ message: 'las habilidades deben ser una cadena de caracteres' })
-    skills: string;
+  @ApiProperty({
+    description: 'Descripción del curso',
+    example: 'Curso básico para aprender NestJS desde cero.',
+  })
+   @IsString({ message: 'La descripción debe ser un texto válido.' })
+   @IsNotEmpty({ message: 'La descripción no puede estar vacía.' })
+   description: string;
 
-    @IsNotEmpty({ message: 'Las años de experiencia son requeridos' })
-    @IsInt({ message: 'Los años de experiencia deben ser un entero' })
-    experienceYears: number;
-
-    @IsNotEmpty({ message: 'La ubicación es requerida' })
-    @IsString({ message: 'la ubicación debe ser una cadena de caracteres' })
-    location: string;
-
-    @IsNotEmpty({ message: 'La descripcion es requerida' })
-    @IsString({ message: 'la descripcion debe ser una cadena de caracteres' })
-    description: string;
+  @ApiProperty({
+    description: 'Duración total del curso en horas (entero positivo).',
+    example: 40,
+  })
+   @IsInt({ message: 'La duración debe ser un número entero.' })
+   @Min(1, { message: 'La duración debe ser al menos 1 hora.' })
+   duration: number;
 }
